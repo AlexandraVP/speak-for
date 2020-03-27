@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
     const message = req.body.text;
     messages.push(message);
     res.send({
-        length: message.length
+        length: messages.length
     });
 });
 
