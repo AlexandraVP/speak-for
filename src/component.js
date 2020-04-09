@@ -1,6 +1,7 @@
 const messagesContainerElement = document.getElementById('messagesContainer');
 const messageInputElement = document.getElementById('messageInput');
 const sendButtonElement = document.getElementById('sendButton');
+const messageFormElement = document.getElementById('messageForm');
 
 export function appendMessageElements(newMessages) {
     newMessages.forEach(message => {
@@ -11,7 +12,7 @@ export function appendMessageElements(newMessages) {
 }
 
 export function subscribeInput(callback){
-    sendButtonElement.addEventListener("click",() => {
+    messageFormElement.addEventListener("submit",() => {
         callback(messageInputElement);
     });
 }
