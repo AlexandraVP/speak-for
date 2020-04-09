@@ -1,0 +1,19 @@
+{
+  "name": "meow-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "rm ./meow-server/public/* && cp ./src/* ./meow-server/public/ && cd meow-server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/eissa2310/meow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/eissa2310/meow/issues"
+  },
+  "homepage": "https://gitlab.com/eissa2310/meow#readme"
+}
