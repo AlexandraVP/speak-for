@@ -7,6 +7,7 @@ export function appendMessageElements(newMessages) {
     newMessages.forEach(message => {
         const messageElement = document.createElement('p');
         messageElement.textContent = message;
+        messageElement.className = 'message';
         messagesContainerElement.appendChild(messageElement);
     });
 }

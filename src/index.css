@@ -1,0 +1,84 @@
+body {
+    background-color: #fefafa;
+    margin: 0 auto;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+#header {
+    background-color: #f6d2d6;
+    height: 30px;
+}
+
+#layout {
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+   display: flex;
+   flex-direction: column;
+   width: 600px;
+   height: 100vh;
+   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+#main {
+    display: flex;
+    flex-direction: row;
+}
+#chat {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+#addInfo {
+    background-color: #f6d2d6;
+    width: 30px;
+    height: calc(100vh - 30px);
+}
+
+#messagesContainer{
+    max-height: calc(100vh - 120px);
+    overflow-y: scroll;
+}
+
+#messageForm {
+    margin-top: auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#messageInput{
+    height: 100px;
+    width: 430px;
+    border-radius: 5px;
+    resize: none;
+    border-color: rgb(216, 216, 216)
+}
+
+#sendButton{
+    height: 100px;
+    width: 100px;
+    border-width: 2px;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    background-image: url(/static/charlie.png);
+    cursor: pointer;
+}
+
+.message{
+    display: inline-block;
+    color: #070707;
+    font-weight: 100;
+    background: #dcf8c6;
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 7.5px;
+    min-width: 150px;
+    margin-right: 100%; /*remove hack*/
+    box-shadow: 0 1px 0.5px rgba(0,0,0, 0.13);
+}

@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "rm ./meow-server/public/* && cp ./src/* ./meow-server/public/ && cd meow-server && npm start"
+    "start": "rm -rf ./meow-server/public/* && cp ./src/* ./meow-server/public/  && mkdir meow-server/public/static && cp ./static/* meow-server/public/static/ && cd meow-server && npm start"
   },
   "repository": {
     "type": "git",
