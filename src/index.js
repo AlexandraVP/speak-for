@@ -15,7 +15,9 @@ function watchMessageUpdates() {
     setTimeout(watchMessageUpdates, 1000);
 }
 
-subscribeInput((message) => {
+subscribeInput((inputElement) => {
+    const message = inputElement.value;
+    inputElement.value = '';
     sendMessage(message).then(watchMessageUpdates);
 });
 

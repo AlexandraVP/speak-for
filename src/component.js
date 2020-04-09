@@ -12,6 +12,6 @@ export function appendMessageElements(newMessages) {
 
 export function subscribeInput(callback){
     sendButtonElement.addEventListener("click",() => {
-        callback(messageInputElement.value);
+        callback(messageInputElement);
     });
 }
