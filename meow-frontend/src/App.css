@@ -1,0 +1,13 @@
+body {
+  background-color: #fefafa;
+  margin: 0 auto;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+.layout {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,26 @@
+
+.messageForm {
+    margin-top: auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.messageInput{
+    height: 100px;
+    width: 430px;
+    border-radius: 5px;
+    resize: none;
+    border-color: rgb(216, 216, 216)
+}
+
+.sendButton{
+    height: 100px;
+    width: 100px;
+    border-width: 2px;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    background-image: url(https://i.ibb.co/Pr4m5s9/964ae98c-2610-4fb6-91c1-18f76b0e2243-1.png);
+    cursor: pointer;
+}

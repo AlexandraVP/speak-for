@@ -2,10 +2,6 @@
   "name": "meow-chat",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "rm -rf ./meow-server/public/* && cp ./src/* ./meow-server/public/  && mkdir meow-server/public/static && cp ./static/* meow-server/public/static/ && cd meow-server && npm run start:local"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/eissa2310/meow.git"
