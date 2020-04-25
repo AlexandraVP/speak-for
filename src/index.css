@@ -74,11 +74,11 @@ body {
     display: inline-block;
     color: #070707;
     font-weight: 100;
-    background: #dcf8c6;
+    background: #efefee;
     margin: 10px;
     padding: 5px 10px;
     border-radius: 7.5px;
     min-width: 150px;
-    margin-right: 100%; /*remove hack*/
+    margin-right: 50%; /*remove hack*/
     box-shadow: 0 1px 0.5px rgba(0,0,0, 0.13);
 }
