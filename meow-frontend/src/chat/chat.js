@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './chat.css';
-import {MessageContainer} from './message-container/message-container';
-import {MessageForm} from './message-form/message-form';
+import { MessageContainer } from './message-container/message-container';
+import { MessageForm } from './message-form/message-form';
+import { ChatHeader } from './chat-header/chat-header';
 
 export class Chat extends Component{
 
@@ -17,16 +18,21 @@ export class Chat extends Component{
 
     updateMessages = () => {
         const from = this.state.messages.length;
-        fetch(`/messages?from=${from}`)
+        fetch(`/messages-v2?from=${from}`, {
+            headers: {
+                'X-Auth-Token': localStorage.getItem('x-auth-token')
+            },
+        })
             .then(d=>d.json())
             .then(this.appendMessages)
     };
 
     sendMessage = (text) => {
-        fetch('/messages', {
+        fetch('/messages-v2', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json;charset=utf-8'
+                'Content-Type': 'application/json;charset=utf-8',
+                'X-Auth-Token': localStorage.getItem('x-auth-token')
             },
             body: JSON.stringify({text: text})
         })
@@ -44,7 +50,7 @@ export class Chat extends Component{
     render(){
         return (
             <div className="container">
-                <div className="header"/>
+                <ChatHeader logout={this.props.logout}/>
                 <div className="main">
                     <div className="addInfo"/>
                     <div className="chat">

@@ -1,0 +1,25 @@
+.header {
+    background-color: #f6d2d6;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.title-name {
+    color: #fff;
+    font-size: 18px;
+}
+
+.logout {
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 5px;
+    user-select: none;
+    cursor: pointer;
+}
