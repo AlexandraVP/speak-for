@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var messageRouter = require('./routes/messages');
-var message2Router = require('./routes/messages-v2');
 var authRouter = require('./routes/auth').router;
 
 var app = express();
@@ -20,7 +19,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/messages', messageRouter);
-app.use('/messages-v2', message2Router);
 app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler

@@ -12,8 +12,9 @@ export class ChatHeader extends Component {
           }
       }).then(() => {
           localStorage.removeItem('x-auth-token');
+          localStorage.removeItem('username');
           this.props.logout();
-      })
+      });
     };
 
     render(){

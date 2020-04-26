@@ -12,13 +12,13 @@ export class Chat extends Component{
 
     appendMessages = (newMessages) => {
         this.setState({
-            messages: [...this.state.messages, ...newMessages] //this.state.messages.concat([message])
+            messages: [...this.state.messages, ...newMessages]
         });
     };
 
     updateMessages = () => {
         const from = this.state.messages.length;
-        fetch(`/messages-v2?from=${from}`, {
+        fetch(`/messages?from=${from}`, {
             headers: {
                 'X-Auth-Token': localStorage.getItem('x-auth-token')
             },
@@ -28,7 +28,7 @@ export class Chat extends Component{
     };
 
     sendMessage = (text) => {
-        fetch('/messages-v2', {
+        fetch('/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',

@@ -31,6 +31,7 @@ export class AuthForm extends Component {
             })
             .then(data => {
                 const token = data.token;
+                localStorage.setItem('username', username);
                 localStorage.setItem('x-auth-token', token);
                 this.props.login();
             })

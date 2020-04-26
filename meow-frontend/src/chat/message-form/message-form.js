@@ -8,7 +8,12 @@ export class MessageForm extends Component {
     };
 
     sendMessage = (event) => {
-        event.nativeEvent.preventDefault();
+        if(event.nativeEvent){
+            event.nativeEvent.preventDefault();
+        }
+        if(this.state.message.trim().length === 0){
+            return;
+        }
         this.props.sendMessage(this.state.message);
         this.setState({message: ''});
     };
@@ -16,6 +21,20 @@ export class MessageForm extends Component {
     updateMessage = (event) => {
         this.setState({message: event.target.value});
     };
+
+    keyUpHandler = (event) => {
+        if (event.keyCode === 13 && event.shiftKey){
+            this.sendMessage(event);
+        }
+    };
+
+    componentDidMount() {
+        document.addEventListener('keyup', this.keyUpHandler);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('keyup', this.keyUpHandler);
+    }
 
     render(){
         return (

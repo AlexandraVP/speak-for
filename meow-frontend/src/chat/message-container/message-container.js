@@ -1,10 +1,25 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './message-container.css';
 
-export function MessageContainer(props) {
-    return (
-        <div className="messagesContainer">
-           {props.messages.map((message,i) => <p key={i} className='message'>{message.text}</p>)}
-        </div>
-    );
+export class MessageContainer extends Component {
+
+    containerRef = React.createRef();
+
+    componentDidUpdate(){
+        const containerElement = this.containerRef.current;
+        containerElement.scrollTop = containerElement.scrollHeight;
+    }
+
+    render(){
+        const me = localStorage.getItem('username');
+        return (
+            <div ref={this.containerRef} className="messagesContainer">
+                {this.props.messages.map((message, i) => (
+                    <div className={me === message.author ? 'right' : ''}>
+                        <p key={i} className='message'>{message.text}</p>
+                    </div>
+                ))}
+            </div>
+        )
+    }
 }

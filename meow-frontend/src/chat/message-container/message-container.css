@@ -1,18 +1,26 @@
 
 .messagesContainer{
-    max-height: calc(100vh - 120px);
+    max-height: calc(100vh - 170px);
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.right{
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .message{
+    margin: 10px;
     display: inline-block;
     color: #070707;
     font-weight: 100;
     background: #efefee;
-    margin: 10px;
     padding: 5px 10px;
     border-radius: 7.5px;
     min-width: 150px;
-    margin-right: 50%; /*remove hack*/
+    max-width: 250px;
+    word-break: break-all;
     box-shadow: 0 1px 0.5px rgba(0,0,0, 0.13);
 }
