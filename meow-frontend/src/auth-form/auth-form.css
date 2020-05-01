@@ -13,8 +13,8 @@
 
 .submit {
     color: white;
-    margin-top: 60px;
-    width: 200px;
+    margin-top: 50px;
+    width: 175px;
     font-weight: 700;
     height: 25px;
     background: linear-gradient(to right, #08CECA 0%, #1C6EA4 50%, #C50AA3 100%);
@@ -22,13 +22,21 @@
 }
 
 .input {
-    margin-top: 30px;
-    font-size: 18px;
+    margin-top: 5px;
+    font-size: 16px;
     border-width: 0 0 2px 0;
     padding-bottom: 5px;
 }
+.password {
+    margin-top: 10px;
+    font-size: 16px;
+    border-width: 0 0 2px 0;
+    padding-bottom: 5px;
+
+}
 
 .logo {
+    margin-bottom: 10px;
     height: 100px;
     width: 100px;
     border-width: 2px;
@@ -40,8 +48,21 @@
 .footer {
     align-self: flex-end;
     padding: 10px;
-    margin-top: 25px;
+
+}
+
+.sign-form {
+    margin-top: 20px;
+    align-self: flex-end;
     font-size: 20px;
+}
+
+.sign {
+    font-weight: 100;
+    font-size: 25px;
+    font-family: "Apple Chancery";
+    cursor: pointer;
+    user-select: none;
 }
 
 .error-container{

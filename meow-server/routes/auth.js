@@ -22,7 +22,7 @@ function getUserName(req){
     return sessions.get(token);
 }
 
-router.post('/login', function(req, res, next) {
+router.post('/login', function(req, res) {
     const username = req.body.username;
     if(users.has(username)){
         res.status(403);
@@ -37,7 +37,7 @@ router.post('/login', function(req, res, next) {
     }
 });
 
-router.post('/logout', function(req, res, next) {
+router.post('/logout', function(req, res) {
     if(authCheck(req)){
         const token = req.headers['x-auth-token'];
         const username = sessions.get(token);

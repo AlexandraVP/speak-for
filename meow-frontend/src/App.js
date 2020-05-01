@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import './App.css';
 import {Chat} from './chat/chat';
 import {AuthForm} from './auth-form/auth-form';
+import {RegistrationForm} from './registration-form/registration-form';
 
 class App extends Component {
 
     state = {
         isAuthorised: !!localStorage.getItem('x-auth-token'),
+        needRegistration: false,
     };
 
     login = () => {
@@ -14,13 +16,26 @@ class App extends Component {
     };
 
     logout = () => {
-      this.setState({isAuthorised: false});
+        this.setState({isAuthorised: false});
     };
+
+    toggleSingForm = () => {
+        this.setState({needRegistration: !this.state.needRegistration});
+    };
+
 
     render() {
         return (
             <div className="layout">
-                {this.state.isAuthorised ? <Chat logout={this.logout}/> : <AuthForm login={this.login}/> }
+                {
+                    this.state.isAuthorised
+                        ? <Chat logout={this.logout}/>
+                        : (
+                            this.state.needRegistration
+                            ? <AuthForm login={this.login} switchForm={this.toggleSingForm}/>
+                            : <RegistrationForm switchForm={this.toggleSingForm}/>
+                        )
+                }
             </div>
 
         );

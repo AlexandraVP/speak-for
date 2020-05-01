@@ -4,7 +4,7 @@ const {authCheck, getUserName} = require('./auth');
 
 const messages = [];
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
     if(!authCheck(req)){
         res.status(401);
         res.send('Unauthorized');
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
     }
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res) {
     if(!authCheck(req)){
         res.status(401);
         res.send('Unauthorized');

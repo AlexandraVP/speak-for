@@ -19,6 +19,7 @@ export class Chat extends Component{
     updateMessages = () => {
         const from = this.state.messages.length;
         fetch(`/messages?from=${from}`, {
+            method: 'GET',
             headers: {
                 'X-Auth-Token': localStorage.getItem('x-auth-token')
             },
@@ -41,6 +42,7 @@ export class Chat extends Component{
     componentDidMount() {
         this.inteval = setInterval(this.updateMessages, 1000);
     }
+
 
     componentWillUnmount() {
         clearInterval(this.inteval);

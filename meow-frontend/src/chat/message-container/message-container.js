@@ -16,7 +16,10 @@ export class MessageContainer extends Component {
             <div ref={this.containerRef} className="messagesContainer">
                 {this.props.messages.map((message, i) => (
                     <div key={i} className={me === message.author ? 'right' : ''}>
-                        <p className='message'>{message.text}</p>
+                        <div className='message-group'>
+                            <span className='author'>{message.author}</span>
+                            <p className='message'>{message.text}</p>
+                        </div>
                     </div>
                 ))}
             </div>

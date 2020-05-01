@@ -58,8 +58,13 @@ export class AuthForm extends Component {
                         </div>
                     )
                 }
+                <input className='password' type='password' name='password'  placeholder='Password'/>
                 <input className='submit' type='submit' value='LOGIN'/>
+
+                <div className='sign-form'>
+                <span className='sign' onClick={this.props.switchForm}>sign up</span>
                 <span className='footer'>🐾</span>
+                </div>
             </form>
         );
     }

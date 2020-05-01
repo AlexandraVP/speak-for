@@ -1,0 +1,58 @@
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 250px;
+    height: 250px;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
+}
+
+.register-input {
+    margin-top: 20px;
+    font-size: 16px;
+    border-width: 0 0 2px 0;
+    padding-bottom: 5px;
+}
+
+.register-password {
+    margin-top: 10px;
+    font-size: 16px;
+    border-width: 0 0 2px 0;
+    padding-bottom: 5px;
+
+}
+
+.repeat-password {
+
+    margin-top: 10px;
+    font-size: 16px;
+    border-width: 0 0 2px 0;
+    padding-bottom: 5px;
+}
+
+.option {
+    margin-top: 40px;
+
+}
+
+.join {
+    cursor: pointer;
+    user-select: none;
+    margin-top: 50px;
+    width: 175px;
+    font-weight: 700;
+    height: 100px;
+    text-decoration: underline;
+    border-radius: 10px;
+}
+
+.log-in {
+    cursor: pointer;
+    font-weight: 700;
+    user-select: none;
+    text-decoration: underline;
+}

@@ -1,17 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var messageRouter = require('./routes/messages');
-var authRouter = require('./routes/auth').router;
 
-var app = express();
+const messageRouter = require('./routes/messages');
+const authRouter = require('./routes/auth').router;
+const usersRouter = require('./routes/auth').router;
+const messages2Router = require('./routes/messages-v2').router;
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+const app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -20,6 +19,8 @@ app.use(cookieParser());
 
 app.use('/messages', messageRouter);
 app.use('/auth', authRouter);
+app.use('/users', usersRouter);
+app.use('/messages-v2', messages2Router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -34,7 +35,9 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
+
+
 
 module.exports = app;

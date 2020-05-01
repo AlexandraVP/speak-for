@@ -6,21 +6,46 @@
     flex-direction: column;
 }
 
+.messagesContainer::-webkit-scrollbar {
+    display: none;
+}
+
 .right{
     display: flex;
     flex-direction: row-reverse;
 }
 
 .message{
-    margin: 10px;
     display: inline-block;
     color: #070707;
     font-weight: 100;
-    background: #efefee;
     padding: 5px 10px;
+    background: #efefee;
     border-radius: 7.5px;
     min-width: 150px;
     max-width: 250px;
     word-break: break-all;
     box-shadow: 0 1px 0.5px rgba(0,0,0, 0.13);
+    margin: 0;
+
+}
+
+.message-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px;
+
+}
+
+.right .message-group{
+    align-items: flex-end;
+}
+
+.author {
+    margin: 0;
+    color: #070707;
+    text-transform: capitalize;
+    font-weight: 100;
+
 }
