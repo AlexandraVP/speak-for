@@ -6,8 +6,8 @@ const logger = require('morgan');
 
 const messageRouter = require('./routes/messages');
 const authRouter = require('./routes/auth').router;
-const usersRouter = require('./routes/auth').router;
-const messages2Router = require('./routes/messages-v2').router;
+const usersRouter = require('./routes/users').router;
+const messages2Router = require('./routes/messages-v2');
 
 const app = express();
 

@@ -16,20 +16,20 @@ export class Chat extends Component{
         });
     };
 
-    updateMessages = () => {
+    updateMessages = async () => {
         const from = this.state.messages.length;
-        fetch(`/messages?from=${from}`, {
+        const response = await fetch(`/messages-v2?from=${from}`, {
             method: 'GET',
             headers: {
                 'X-Auth-Token': localStorage.getItem('x-auth-token')
             },
-        })
-            .then(d=>d.json())
-            .then(this.appendMessages)
+        });
+        const data = await response.json();
+        this.appendMessages(data);
     };
 
     sendMessage = (text) => {
-        fetch('/messages', {
+        fetch('/messages-v2', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',

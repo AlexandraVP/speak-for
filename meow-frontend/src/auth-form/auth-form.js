@@ -6,42 +6,41 @@ export class AuthForm extends Component {
     state = {
         username: '',
         authError: false,
+        password: ''
     };
 
-    login = (event) => {
+    login = async (event) => {
         event.nativeEvent.preventDefault();
         const username = this.state.username
             .toLowerCase()
             .trim();
+        const password = this.state.password;
         if(!username){
             return;
         }
-        fetch('/auth/login', {
+        const response = await fetch('/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify({username: username})
-        })
-            .then(response => {
-                if(response.status == 403){
-                    throw new Error('Login is already taken!');
-                }
-                return response.json();
-            })
-            .then(data => {
-                const token = data.token;
-                localStorage.setItem('username', username);
-                localStorage.setItem('x-auth-token', token);
-                this.props.login();
-            })
-            .catch(error => {
-                this.setState({authError: true});
-            });
+            body: JSON.stringify({username: username, password})
+        });
+        if(response.status === 403){
+            this.setState({authError: true});
+        }
+        const data = await response.json();
+        const token = data.token;
+        localStorage.setItem('username', username);
+        localStorage.setItem('x-auth-token', token);
+        this.props.login();
     };
 
     updateUsername = (event) => {
         this.setState({username: event.target.value, authError: false});
+    };
+
+    updatePassword = (event) => {
+        this.setState({password: event.target.value, authError: false});
     };
 
     render() {
@@ -58,7 +57,8 @@ export class AuthForm extends Component {
                         </div>
                     )
                 }
-                <input className='password' type='password' name='password'  placeholder='Password'/>
+                <input className='password' type='password' name='password'  placeholder='Password'
+                       onChange={this.updatePassword} value={this.state.password}/>
                 <input className='submit' type='submit' value='LOGIN'/>
 
                 <div className='sign-form'>

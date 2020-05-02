@@ -3,29 +3,40 @@ import './registration-form.css';
 
 export class RegistrationForm extends Component {
 
-    state ={
+    state = {
         username: '',
         password: '',
         repeatPassword: '',
-        error: ''
+        error: '',
     };
 
-    register = () => {
+    register = async () => {
         const username = this.state.username.trim().toLowerCase();
-        if(!username){
+        if (!username) {
             this.setState({
-                error: 'Enter Username'
+                error: 'Enter Username',
             });
-        }else if(!this.state.password){
+        } else if (!this.state.password) {
             this.setState({
-                error: 'Enter Password'
+                error: 'Enter Password',
             });
-        }else if(this.state.password !== this.state.repeatPassword){
+        } else if (this.state.password !== this.state.repeatPassword) {
             this.setState({
-                error: 'Passwords don`t match'
+                error: 'Passwords don`t match',
             });
-        }else{
-            this.props.switchForm();
+        } else {
+            const response = await fetch('users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                },
+                body: JSON.stringify({username, password: this.state.password}),
+            });
+            if (response.status > 400) {
+                this.setState({error: response.status})
+            } else {
+                this.props.switchForm();
+            }
         }
     };
 
@@ -34,7 +45,7 @@ export class RegistrationForm extends Component {
         const username = event.target.value;
         this.setState({
             username,
-            error: ''
+            error: '',
         })
     };
 
@@ -42,7 +53,7 @@ export class RegistrationForm extends Component {
         const password = event.target.value;
         this.setState({
             password,
-            error: ''
+            error: '',
         })
     };
 
@@ -50,7 +61,7 @@ export class RegistrationForm extends Component {
         const repeatPassword = event.target.value;
         this.setState({
             repeatPassword,
-            error: ''
+            error: '',
         })
     };
 
@@ -60,7 +71,7 @@ export class RegistrationForm extends Component {
                 <input className='register-input' type='text'
                        placeholder='Username' name='Username'
                        value={this.state.username}
-                     onChange={this.updateUsername}/>
+                       onChange={this.updateUsername}/>
                 <input className='register-password' type='password'
                        placeholder='Password' name='Password'
                        value={this.state.password}
