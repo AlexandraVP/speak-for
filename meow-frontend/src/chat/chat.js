@@ -18,7 +18,7 @@ export class Chat extends Component{
 
     updateMessages = async () => {
         const from = this.state.messages.length;
-        const response = await fetch(`/messages-v2?from=${from}`, {
+        const response = await fetch(`/messages?from=${from}`, {
             method: 'GET',
             headers: {
                 'X-Auth-Token': localStorage.getItem('x-auth-token')
@@ -29,7 +29,7 @@ export class Chat extends Component{
     };
 
     sendMessage = (text) => {
-        fetch('/messages-v2', {
+        fetch('/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',

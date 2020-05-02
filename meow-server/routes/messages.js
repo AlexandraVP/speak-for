@@ -1,32 +1,41 @@
-var express = require('express');
-var router = express.Router();
-const {authCheck, getUserName} = require('./auth');
+const express = require('express');
+const router = express.Router();
+const {authCheck, getUserName} = require('./users');
+const { messages } = require('../database');
 
-const messages = [];
 
-router.get('/', function(req, res) {
+router.get('/', async function(req, res) {
     if(!authCheck(req)){
         res.status(401);
         res.send('Unauthorized');
     }else{
-        const from = req.query.from || 0;
-        res.send(messages.slice(from));
+        const from = Number(req.query.from) || 0;
+        const newMessages =  await messages()
+            .find({index: { $gt: from}})
+            .toArray();
+        res.send(
+            newMessages
+        );
     }
 });
 
-router.post('/', function(req, res) {
+router.post('/', async function(req, res) {
     if(!authCheck(req)){
         res.status(401);
         res.send('Unauthorized');
     }else{
         const text = req.body.text;
-        messages.push({
+        const length = await messages()
+            .find({})
+            .count();
+        await messages().insert({
+            index: length,
+            author: getUserName(req),
+            channel: 0,
             text,
-            author: getUserName(req)
+            date: Date.now()
         });
-        res.send({
-            length: messages.length
-        });
+        res.send('Ok');
     }
 });
 
