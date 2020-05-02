@@ -1,8 +1,10 @@
 # MEOW chat
 ### Экран авторизации
-![alt text](https://i.ibb.co/QYj1khw/2020-04-26-20-34-58.png)
+![alt text](https://i.ibb.co/N6L1wPb/2020-05-02-18-45-37.png)
 
-![alt text](https://i.ibb.co/hgQ6MzS/2020-04-26-20-36-45.png)
+### Экран регистрации
+
+![alt text](https://i.ibb.co/YpfYfmj/2020-05-02-18-46-11.png)
 
 ### Экран чата
-![alt text](https://i.ibb.co/VqJtpSQ/2020-04-26-20-38-08.png)
+![alt text](https://i.ibb.co/zGPWDR5/2020-05-02-17-53-40.png)
