@@ -2,8 +2,8 @@
   "name": "meow",
   "version": "1.0.0",
   "scripts": {
-    "start": " node ./bin/www",
-    "start:dev": "MONGODB_URI=mongodb://localhost:27017 node ./bin/www"
+    "start": "DB_NAME=heroku_dd7t5n68 node ./bin/www",
+    "start:dev": "MONGODB_URI=mongodb://localhost:27017 DB_NAME=meowbase node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "^1.4.5",
