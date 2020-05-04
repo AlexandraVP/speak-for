@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 let _database = null;
 
-MongoClient.connect(process.env.MONGODB_URI, (err, client) => {
+MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost/meowchat23', (err, client) => {
     if (err) {
         console.log(err);
     }else{
