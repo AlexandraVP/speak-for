@@ -4,7 +4,7 @@ import './chat-header.css';
 export class ChatHeader extends Component {
 
     logout = () => {
-      fetch('/auth/logout', {
+      fetch('/users/logout', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json;charset=utf-8',
