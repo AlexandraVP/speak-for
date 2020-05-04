@@ -1,10 +1,14 @@
 # MEOW chat
 ### Экран авторизации
-![alt text](https://i.ibb.co/N6L1wPb/2020-05-02-18-45-37.png)
+![alt text](https://i.ibb.co/MfHZ45Q/2020-05-04-23-56-19.png)
 
 ### Экран регистрации
 
-![alt text](https://i.ibb.co/YpfYfmj/2020-05-02-18-46-11.png)
+![alt text](https://i.ibb.co/V2KZXqy/2020-05-04-23-56-49.png)
 
 ### Экран чата
 ![alt text](https://i.ibb.co/zGPWDR5/2020-05-02-17-53-40.png)
+
+
+### Heroku
+[link](https://meowchat23.herokuapp.com/)

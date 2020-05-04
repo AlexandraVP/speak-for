@@ -79,86 +79,21 @@ POST /auth/login
 
 ### Описание
 ```
-Запрос:
-GET /messages?from=${number}
+Запросы:
+GET /messages/new?count=${number}
+GET /messages/after?since=${timestamp}
+GET /messages/before?until=${timstamp}&count=${number}
 
-Ответ:
-Array<Messages>
+Array<Message>
+
+POST /messages
+
 Message {
     text: string;
     author: string;
+    date: timstamp;
+    id: string;
 }
 ```
-Выдает список сообщений начиная с целого числа `from`. Если параметр `from` не передан, то считается
-равным 0. Требует авторизации.
+Все запросы на сообщения требуют авторизации.
 
-### Примеры
-```
-Запрос
-GET /messages?from=1
-Ответ:
-[
-    { text: "Hi!", author: 'alex' },
-    { text: "What's up?", author: 'sandra' },
-    { text: "Well, thanks!", author: 'alex'}
-]
-
-Запрос
-GET /messages?from=2
-Ответ:
-[
-    { text: "What's up?", author: 'sandra' },
-    { text: "Well, thanks!", author: 'alex'}
-]
-
-Запрос
-GET /messages
-Ответ:
-[
-    {text: "Good morning!", author: 'sandra'},
-    { text: "Hi!", author: 'alex' },
-    { text: "What's up?", author: 'sandra' },
-    { text: "Well, thanks!", author: 'alex'}
-]
-```
-
-### Описание
-```
-Запрос:
-POST /messages
-{
-    "text": ${string}
-}
-
-Ответ:
-{
-    "length": ${number}
-}
-```
-
-Принимает JSON в теле с полем `text` - текстом сообщения.
- Возвращает JSON с полем числовым `length` - количеством сообщений. 
- Требует авторизации.
- ### Примеры
- ```
- Запрос:
- POST /messages
- {
-     "text": "That's fine. What about phone call?"
- }
- Ответ:
- {
-     "length": 5
- }
- 
- 
-  Запрос:
-  POST /messages
-  {
-      "text": "Yes... in 5 mins"
-  }
-  Ответ:
-  {
-      "length": 6
-  }
- ```
