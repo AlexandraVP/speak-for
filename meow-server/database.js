@@ -23,9 +23,14 @@ function messages(){
     return db().collection('messages');
 }
 
+const Permissions = {
+    GUEST: 0,
+    ADMIN: 32
+};
 
 module.exports = {
     db,
     users,
-    messages
+    messages,
+    Permissions
 };

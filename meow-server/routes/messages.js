@@ -1,17 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const {authCheck, getUserName} = require('./users');
-const {messages} = require('../database');
+const {messages, users, Permissions} = require('../database');
 
+const GUEST_MESSAGES_LIMIT = 50;
+const MESSAGE_LENGTH_LIMIT = 450;
 
 router.get('/after', async function (req, res) {
     if (!authCheck(req)) {
         res.status(401);
         res.send('Unauthorized');
     } else {
-        const from = Number(req.query.from);
+        const since = Number(req.query.since);
         const newMessages = await messages()
-            .find({index: {$gt: from}})
+            .find({date: {$gt: since}})
+            .sort({date: 1})
             .toArray();
         res.send(
             newMessages,
@@ -25,14 +28,13 @@ router.get('/new', async function (req, res) {
         res.send('Unauthorized');
     } else {
         const count = Number(req.query.count);
-        const length = await messages()
-            .find({})
-            .count();
         const newMessages = await messages()
-            .find({index: {$gte: length - count}})
+            .find({})
+            .sort({date: -1})
+            .limit(count)
             .toArray();
         res.send(
-            newMessages,
+            newMessages.sort((a,b) => a.date - b.date),
         );
     }
 });
@@ -43,12 +45,14 @@ router.get('/before', async function (req, res) {
         res.send('Unauthorized');
     } else {
         const count = Number(req.query.count);
-        const from = Number(req.query.from);
+        const until = Number(req.query.until);
         const newMessages = await messages()
-            .find({index: {$lt: from, $gte: from-count}})
+            .find({date: {$lt: until}})
+            .sort({date: -1})
+            .limit(count)
             .toArray();
         res.send(
-            newMessages,
+            newMessages.sort((a,b) => a.date - b.date),
         );
     }
 });
@@ -60,14 +64,22 @@ router.post('/', async function (req, res) {
         res.status(401);
         res.send('Unauthorized');
     } else {
-        const text = req.body.text;
-        const length = await messages()
-            .find({})
-            .count();
+        const text = req.body.text.slice(0,MESSAGE_LENGTH_LIMIT);
+        const username = getUserName(req);
+        const user = await users()
+            .find({username});
+        if(user.permission === Permissions.GUEST){
+            const messagesCount = await messages()
+                .find({author: username})
+                .count();
+            if(messagesCount >= GUEST_MESSAGES_LIMIT){
+                res.status(405);
+                res.send("Messages limit has been exceeded!");
+                return;
+            }
+        }
         await messages().insert({
-            index: length,
             author: getUserName(req),
-            channel: 0,
             text,
             date: Date.now(),
         });

@@ -28,8 +28,8 @@ export class Chat extends Component {
             return;
         }
         this.oldMessagesRequestPending = true;
-        const from = messages[0].index;
-        const response = await fetch(`/messages/before?from=${from}&count=20`, {
+        const until = messages[0].date;
+        const response = await fetch(`/messages/before?until=${until}&count=20`, {
             headers: {
                 'X-Auth-Token': localStorage.getItem('x-auth-token'),
             },
@@ -45,8 +45,8 @@ export class Chat extends Component {
 
     updateMessages = async () => {
         const {messages} = this.state;
-        const from = messages[messages.length - 1].index;
-        const response = await fetch(`/messages/after?from=${from}`, {
+        const since = messages[messages.length - 1].date;
+        const response = await fetch(`/messages/after?since=${since}`, {
             headers: {
                 'X-Auth-Token': localStorage.getItem('x-auth-token'),
             },

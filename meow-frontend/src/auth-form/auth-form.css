@@ -4,7 +4,7 @@
     align-items: center;
     background-color: white;
     width: 250px;
-    height: 400px;
+    height: 450px;
     color: black;
     padding: 10px;
     border-radius: 5px;
@@ -22,7 +22,7 @@
 }
 
 .input {
-    margin-top: 5px;
+    margin-top: 15px;
     font-size: 16px;
     border-width: 0 0 2px 0;
     padding-bottom: 5px;
@@ -36,7 +36,6 @@
 }
 
 .logo {
-    margin-bottom: 10px;
     height: 100px;
     width: 100px;
     border-width: 2px;
@@ -52,17 +51,18 @@
 }
 
 .sign-form {
-    margin-top: 20px;
+    margin-top: 68px;
     align-self: flex-end;
     font-size: 20px;
 }
 
 .sign {
     font-weight: 100;
-    font-size: 25px;
+    font-size: 15px;
     font-family: "Apple Chancery";
     cursor: pointer;
     user-select: none;
+    text-decoration: underline;
 }
 
 .error-container{
@@ -73,4 +73,9 @@
 .error {
     position:absolute;
     color: #ff9494;
+}
+
+.not-account {
+
+    font-size: 12px;
 }

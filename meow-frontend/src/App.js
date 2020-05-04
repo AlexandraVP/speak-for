@@ -11,7 +11,21 @@ class App extends Component {
         needRegistration: false,
     };
 
-    login = () => {
+    login = async (username, password) => {
+        const response = await fetch('/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({username: username, password})
+        });
+        if(response.status === 403){
+            this.setState({authError: true});
+        }
+        const data = await response.json();
+        const token = data.token;
+        localStorage.setItem('username', username);
+        localStorage.setItem('x-auth-token', token);
         this.setState({isAuthorised: true});
     };
 
@@ -33,7 +47,7 @@ class App extends Component {
                         : (
                             this.state.needRegistration
                             ? <AuthForm login={this.login} switchForm={this.toggleSingForm}/>
-                            : <RegistrationForm switchForm={this.toggleSingForm}/>
+                            : <RegistrationForm switchForm={this.toggleSingForm} login={this.login}/>
                         )
                 }
             </div>

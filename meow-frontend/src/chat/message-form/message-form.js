@@ -39,7 +39,8 @@ export class MessageForm extends Component {
     render(){
         return (
             <form className="messageForm" onSubmit={this.sendMessage}>
-                <textarea className="messageInput" onChange={this.updateMessage} value={this.state.message}/>
+                <textarea className="messageInput" onChange={this.updateMessage} value={this.state.message}
+                maxLength='450'/>
                 <input className="sendButton" type="submit" value=""/>
             </form>
         );

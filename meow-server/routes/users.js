@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const CryptoJS = require('crypto-js');
-const {users} = require('../database');
+const {users, Permissions} = require('../database');
 
-const Permissions = {
-    GUEST: 0,
-    ADMIN: 32
-};
+
+
+const GUESTS_LIMIT = 500;
 
 function encrypt(password) {
     return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
@@ -35,9 +34,17 @@ function getUserName(req) {
 router.post('/register', async function (req, res) {
     const {username, password, about} = req.body;
     const usersCount = await users()
+        .find({permission: Permissions.GUEST})
+        .count();
+    if(usersCount > GUESTS_LIMIT){
+        res.status(405);
+        res.send("Guest users limit has been exceeded!");
+        return;
+    }
+    const userExists = await users()
         .find({username: username})
         .count();
-    if (usersCount > 0) {
+    if (userExists > 0) {
         res.status(403);
         res.send('Username has been already taken!');
     } else {

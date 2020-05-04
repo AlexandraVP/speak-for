@@ -35,7 +35,11 @@ export class RegistrationForm extends Component {
             if (response.status > 400) {
                 this.setState({error: response.status})
             } else {
-                this.props.switchForm();
+                const username = this.state.username
+                    .toLowerCase()
+                    .trim();
+                const password = this.state.password;
+                this.props.login(username,this.state.password);
             }
         }
     };
@@ -67,17 +71,23 @@ export class RegistrationForm extends Component {
 
     render() {
         return (
+
+
             <form className='register-form'>
+
+                <h2 className='title'>Sign up</h2>
+                <div className='logo'/>
+
                 <input className='register-input' type='text'
-                       placeholder='Username' name='Username'
+                       placeholder='Username'
                        value={this.state.username}
                        onChange={this.updateUsername}/>
                 <input className='register-password' type='password'
-                       placeholder='Password' name='Password'
+                       placeholder='Password'
                        value={this.state.password}
                        onChange={this.updatePassword}/>
                 <input className='repeat-password' type='password'
-                       placeholder='Password' name='Password'
+                       placeholder='Confirm Password'
                        value={this.state.repeatPassword}
                        onChange={this.updateRepeatPassword}/>
                 {
@@ -87,11 +97,16 @@ export class RegistrationForm extends Component {
                         </div>
                     )
                 }
-                <div className='option'>
-                    <span className='join' onClick={this.register}>Join</span>
-                    <span className='or'> or </span>
-                    <span className='log-in' onClick={this.props.switchForm}>Log in</span>
+
+                <div className='get-start' onClick={this.register}>
+                    <span>Get started</span>
                 </div>
+
+                <div className='have-account'>
+                    <span className='already-have'>Already have an accout?</span>
+                    <span className='log-in' onClick={this.props.switchForm}> Log in</span>
+                </div>
+
             </form>
         );
     }
