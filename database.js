@@ -6,7 +6,7 @@ MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost/meowchat23',
     if (err) {
         console.log(err);
     }else{
-        _database = client.db('meowbase');
+        _database = client;//.db('meowbase');
     }
 });
 
