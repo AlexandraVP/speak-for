@@ -6,6 +6,10 @@
     "type": "git",
     "url": "git+https://gitlab.com/eissa2310/meow.git"
   },
+  "scripts": {
+    "start:dev": "cd ./meow-frontend && npm i && npm run build && rm -rf ../meow-server/public &&  mkdir ../meow-server/public && mv ./build/* ../meow-server/public && cd ../meow-server && npm i && npm run start:dev",
+    "start:prod": "cd ./meow-frontend && npm i && npm run build && rm -rf ../meow-server/public &&  mkdir ../meow-server/public && mv ./build/* ../meow-server/public && cd ../meow-server && npm i && npm run start:prod"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {

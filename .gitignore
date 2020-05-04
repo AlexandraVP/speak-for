@@ -5,6 +5,7 @@
 .idea
 meow-frontend/node_modules
 meow-server/node_modules
+meow-server/public
 meow-frontend/build
 *.iml
 .floo
