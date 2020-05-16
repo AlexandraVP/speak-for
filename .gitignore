@@ -9,3 +9,4 @@ meow-frontend/build
 *.iml
 .floo
 .flooignore
+public
