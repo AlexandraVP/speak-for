@@ -1,4 +1,4 @@
-# MEOW chat
+# Speak4 chat
 ### Экран регистрации
 
 ![alt text](https://i.ibb.co/KjRXydy/2020-05-17-00-12-54.png)
