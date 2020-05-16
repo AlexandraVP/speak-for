@@ -20,7 +20,9 @@ export class ChatHeader extends Component {
     render(){
         return (
             <div className="header">
-                <div className='title-name'>MEOW chat</div>
+                <div className='title-name'>
+
+                </div>
                 <div className='logout' onClick={this.logout}>Logout</div>
             </div>
         );

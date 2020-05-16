@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 900px;
     height: 100vh;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
@@ -18,8 +18,8 @@
 }
 
 .addInfo {
-    background-color: #f6d2d6;
-    width: 30px;
+    background-color: #e9e8eb;
+    width: 500px;
     height: calc(100vh - 50px);
 }
 

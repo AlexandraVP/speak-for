@@ -26,6 +26,10 @@ function messages(){
     return db().collection('messages');
 }
 
+function channels(){
+    return db().collection('channels');
+}
+
 const Permissions = {
     GUEST: 0,
     ADMIN: 32
@@ -35,5 +39,6 @@ module.exports = {
     db,
     users,
     messages,
+    channels,
     Permissions
 };

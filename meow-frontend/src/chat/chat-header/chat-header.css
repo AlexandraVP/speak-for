@@ -1,6 +1,7 @@
 .header {
-    background-color: #f6d2d6;
-    height: 50px;
+    background-color: #bbbfca;
+    color: black;
+    height: 60px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -9,15 +10,20 @@
 }
 
 .title-name {
-    color: #fff;
     font-size: 18px;
+    margin-top: 10px;
+    background-image: url('https://i.ibb.co/nmwzdgr/speak-for-title.png');
+    width: 100px;
+    height: 100px;
+    background-size: 100%;
+
 }
 
 .logout {
-    color: #fff;
+    color: #e9e8eb;
     font-size: 12px;
     font-weight: bold;
-    border: 1px solid #fff;
+    border: 1px solid #e9e8eb;
     border-radius: 5px;
     padding: 5px;
     user-select: none;

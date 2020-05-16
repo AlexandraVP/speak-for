@@ -1,6 +1,8 @@
 
 .messageForm {
     margin-top: auto;
+    height: 80px;
+    background-color: #bbbfca;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -8,19 +10,23 @@
 }
 
 .messageInput{
-    height: 100px;
-    width: 430px;
-    border-radius: 5px;
+    height: 60px;
+    width: 500px;
+    border-radius: 7px;
     resize: none;
-    border-color: rgb(216, 216, 216)
+    border-color: rgb(216, 216, 216);
+    background-color: #fdfdff;
 }
 
 .sendButton{
-    height: 100px;
-    width: 100px;
-    border-width: 2px;
-    border-radius: 50%;
-    background-size: 100% 100%;
-    background-image: url(https://i.ibb.co/Pr4m5s9/964ae98c-2610-4fb6-91c1-18f76b0e2243-1.png);
+    height: 40px;
+    width: 40px;
+    padding: 10px;
+    background-size: 90%;
+    border: none;
+    background-repeat: no-repeat;
+    background-image: url("https://i.ibb.co/QvbRkMP/send-message-icon.png");
+    filter: invert(85%);
+    background-color: transparent;
     cursor: pointer;
 }

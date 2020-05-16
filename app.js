@@ -5,7 +5,7 @@ const logger = require('morgan');
 
 
 const messageRouter = require('./routes/messages');
-const usersRouter = require('./routes/users').router;
+const usersRouter = require('./routes/users');
 
 const app = express();
 

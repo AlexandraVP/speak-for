@@ -59,7 +59,7 @@ export class Chat extends Component {
     };
 
     sendMessage = (text) => {
-        fetch('/messages', {
+        fetch('/messages/send', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
