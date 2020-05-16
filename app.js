@@ -17,6 +17,7 @@ app.use(cookieParser());
 
 app.use('/messages', messageRouter);
 app.use('/users', usersRouter);
+app.use(express.static('meow-frontend/build'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

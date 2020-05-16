@@ -4,9 +4,9 @@
 
 .idea
 meow-frontend/node_modules
-meow-server/node_modules
+node_modules
 meow-frontend/build
 *.iml
 .floo
 .flooignore
-static
+public
