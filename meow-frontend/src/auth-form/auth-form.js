@@ -32,7 +32,7 @@ export class AuthForm extends Component {
     render() {
         return (
             <form className='form' onSubmit={this.login}>
-                <h2 className='title'>Welcome</h2>
+
                 <div className='logo'/>
                 <input className='input' type='text'
                        placeholder='Username' onChange={this.updateUsername} value={this.state.username}/>
@@ -50,7 +50,7 @@ export class AuthForm extends Component {
                 <div className='sign-form'>
                 <span className='not-account'>Don't have an account? </span>
                 <span className='sign' onClick={this.props.switchForm}>Sign up</span>
-                <span className='footer'>🐾</span>
+                <span className='footer'></span>
                 </div>
             </form>
         );

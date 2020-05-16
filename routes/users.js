@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { verifyUser, userExists, createUser } = require('../domain/user');
 const {limitGuestUsers} = require('../domain/guest-limits');
-const {requireAuth, killSession, createSession, getUserName, getTokenByUsername} = require('../domain/auth');
+const {requireAuth, killSession, createSession,  getTokenByUsername} = require('../domain/auth');
 
 router.use('/register', limitGuestUsers);
 router.post('/register', async function (req, res) {
@@ -26,6 +26,7 @@ router.post('/login', async function (req, res) {
         return;
     }
     const token = getTokenByUsername(username) || createSession(username);
+
     res.send({token});
 });
 

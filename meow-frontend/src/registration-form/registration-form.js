@@ -1,6 +1,17 @@
 import React, {Component} from 'react';
 import './registration-form.css';
 
+function mask(password){
+    return new Array(password.length)
+        .fill(0)
+        .map(() => '*')
+        .join('');
+}
+
+function concat(value, masked){
+    return value.slice(0, masked.length) + masked.slice(value.length)
+}
+
 export class RegistrationForm extends Component {
 
     state = {
@@ -38,7 +49,6 @@ export class RegistrationForm extends Component {
                 const username = this.state.username
                     .toLowerCase()
                     .trim();
-                const password = this.state.password;
                 this.props.login(username,this.state.password);
             }
         }
@@ -56,7 +66,7 @@ export class RegistrationForm extends Component {
     updatePassword = (event) => {
         const password = event.target.value;
         this.setState({
-            password,
+            password: concat(this.state.password, password),
             error: '',
         })
     };
@@ -64,7 +74,7 @@ export class RegistrationForm extends Component {
     updateRepeatPassword = (event) => {
         const repeatPassword = event.target.value;
         this.setState({
-            repeatPassword,
+            repeatPassword: concat(this.state.repeatPassword, repeatPassword),
             error: '',
         })
     };
@@ -74,21 +84,25 @@ export class RegistrationForm extends Component {
 
 
             <form className='register-form'>
-
-                <h2 className='title'>Sign up</h2>
-                <div className='logo'/>
-
+            <div className='container-registration'>
+                <h2 className='title'>  </h2>
+                <div className='logo-registration'/>
+            </div>
                 <input className='register-input' type='text'
-                       placeholder='Username'
+                       placeholder="Enter Username"
+                       autoComplete="chrome-off"
                        value={this.state.username}
-                       onChange={this.updateUsername}/>
-                <input className='register-password' type='password'
-                       placeholder='Password'
-                       value={this.state.password}
+                       onChange={this.updateUsername}
+                       name='comment'
+                       />
+                <input className='register-password'
+                       placeholder="Enter Password"
+                       value={mask(this.state.password)}
+                       name='credit-card'
                        onChange={this.updatePassword}/>
-                <input className='repeat-password' type='password'
+                <input className='repeat-password'
                        placeholder='Confirm Password'
-                       value={this.state.repeatPassword}
+                       value={mask(this.state.repeatPassword)}
                        onChange={this.updateRepeatPassword}/>
                 {
                     !!this.state.error && (

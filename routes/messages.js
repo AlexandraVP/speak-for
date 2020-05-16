@@ -8,7 +8,7 @@ router.use(requireAuth);
 
 router.get('/after', async function (req, res) {
     const since = Number(req.query.since);
-    const newMessages = await getMessagesAfter(since);
+    const newMessages = await getMessagesAfter(getUserName(req), since);
     res.send(
         newMessages,
     );
@@ -16,14 +16,14 @@ router.get('/after', async function (req, res) {
 
 router.get('/new', async function (req, res) {
     const count = Number(req.query.count);
-    const newMessages = await getNewMessages(count);
+    const newMessages = await getNewMessages(getUserName(req), count);
     res.send(newMessages);
 });
 
 router.get('/before', async function (req, res) {
     const count = Number(req.query.count);
     const until = Number(req.query.until);
-    const newMessages = await getMessagesBefore(until, count);
+    const newMessages = await getMessagesBefore(getUserName(req), until, count);
     res.send(newMessages);
 });
 

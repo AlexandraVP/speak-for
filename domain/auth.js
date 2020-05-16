@@ -1,3 +1,4 @@
+const {dispatch, EVENTS} = require('../emitter');
 
 const sessions = new Map();
 
@@ -23,6 +24,7 @@ function createSession(username){
     const token = generateRandomToken();
     sessions.set(token, username);
     sessions.set(username, token);
+    dispatch(EVENTS.USER_LOG_IN, {username});
     return token;
 }
 
@@ -31,6 +33,8 @@ function killSession(req){
     const username = sessions.get(token);
     sessions.delete(username);
     sessions.delete(token);
+    dispatch(EVENTS.USER_LOG_OUT, {username});
+    return true;
 }
 
 function getTokenByUsername(username){

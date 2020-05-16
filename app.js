@@ -2,7 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const observe = require('./emitter');
 
 const messageRouter = require('./routes/messages');
 const usersRouter = require('./routes/users');
@@ -19,6 +19,7 @@ app.use('/messages', messageRouter);
 app.use('/users', usersRouter);
 app.use(express.static('meow-frontend/build'));
 // catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   next(createError(404));
 });

@@ -1,10 +1,17 @@
 # MEOW chat
-### Экран авторизации
-![alt text](https://i.ibb.co/MfHZ45Q/2020-05-04-23-56-19.png)
-
 ### Экран регистрации
 
-![alt text](https://i.ibb.co/V2KZXqy/2020-05-04-23-56-49.png)
+![alt text](https://i.ibb.co/KjRXydy/2020-05-17-00-12-54.png)
 
 ### Экран чата
-![alt text](https://i.ibb.co/zGPWDR5/2020-05-02-17-53-40.png)
+![alt text](https://i.ibb.co/BrfcP6c/2020-05-17-00-21-45.png)
+
+### Charlie bot
+![alt text](https://i.ibb.co/MVLWscP/2020-05-17-00-22-34.png)
+
+### Экран авторизации
+![alt text](https://i.ibb.co/vqmwjxj/2020-05-17-00-13-08.png)
+
+
+
+

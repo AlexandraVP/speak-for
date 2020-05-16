@@ -4,23 +4,43 @@
     align-items: center;
     background-color: white;
     width: 250px;
-    height: 450px;
+    height: 370px;
     color: black;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
 }
 
+.logo-registration {
+    background-image: url('https://i.ibb.co/YBZWrsk/2020-05-16-20-47-44.png');
+    width: 200px;
+    height: 150px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: first;
+
+}
+
+.container-registration {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
 .register-input {
-    margin-top: 20px;
-    font-size: 16px;
+
+    font-size: 18px;
     border-width: 0 0 2px 0;
     padding-bottom: 5px;
+
 }
+
+
+
 
 .register-password {
     margin-top: 10px;
-    font-size: 16px;
+    font-size: 18px;
     border-width: 0 0 2px 0;
     padding-bottom: 5px;
 
@@ -29,7 +49,7 @@
 .repeat-password {
 
     margin-top: 10px;
-    font-size: 16px;
+    font-size: 18px;
     border-width: 0 0 2px 0;
     padding-bottom: 5px;
 }
@@ -50,11 +70,11 @@
 .get-start {
     cursor: pointer;
     color: white;
-    margin-top: 30px;
+    margin-top: 15px;
     width: 175px;
     font-weight: 700;
     height: 25px;
-    background: linear-gradient(to right, #08CECA 0%, #1C6EA4 50%, #C50AA3 100%);
+    background: #bbbfca;
     border-radius: 10px;
     text-align: center;
     padding: 2px;
@@ -64,13 +84,13 @@
 
 
     padding: 10px;
-    margin-top: 40px;
+    margin-top: 10px;
 
 }
 
 .already-have {
 
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .log-in {
