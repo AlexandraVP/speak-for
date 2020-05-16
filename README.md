@@ -8,7 +8,3 @@
 
 ### Экран чата
 ![alt text](https://i.ibb.co/zGPWDR5/2020-05-02-17-53-40.png)
-
-
-### Heroku
-[link](https://speak-for.herokuapp.com/)
