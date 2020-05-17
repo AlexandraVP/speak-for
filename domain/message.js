@@ -1,11 +1,11 @@
 const {messages} = require('../database');
 const {dispatch, EVENTS} = require('../emitter');
-const {getChannelTitle} = require('./channel');
+const {getGuestChannelTitle} = require('./channel');
 
 const MESSAGE_LENGTH_LIMIT = 450;
 
 async function getMessagesAfter(username, since){
-    const channelName = await getChannelTitle(username);
+    const channelName = await getGuestChannelTitle(username);
     const newMessages = await messages()
         .find({date: {$gt: since}, channel: channelName})
         .sort({date: 1})
@@ -14,7 +14,7 @@ async function getMessagesAfter(username, since){
 }
 
 async function getNewMessages(username, count){
-    const channelName = await getChannelTitle(username);
+    const channelName = await getGuestChannelTitle(username);
     const newMessages = await messages()
         .find({channel: channelName})
         .sort({date: -1})
@@ -24,7 +24,7 @@ async function getNewMessages(username, count){
 }
 
 async function getMessagesBefore(username, until, count){
-    const channelName = await getChannelTitle(username);
+    const channelName = await getGuestChannelTitle(username);
     const newMessages = await messages()
         .find({date: {$lt: until}, channel: channelName})
         .sort({date: -1})
@@ -33,9 +33,8 @@ async function getMessagesBefore(username, until, count){
     return newMessages.sort((a, b) => a.date - b.date);
 }
 
-async function publishMessage(username, sourceText){
+async function publishMessage(username, sourceText, channelName){
     const text = sourceText.slice(0, MESSAGE_LENGTH_LIMIT);
-    const channelName = await getChannelTitle(username);
     await messages().insert({
         author: username,
         text,

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {requireAuth, getUserName} = require('../domain/auth');
-const {limitGuestMessages} = require('../domain/guest-limits');
+const {getGuestChannelTitle} = require('../domain/channel');
 const {getMessagesAfter, getNewMessages, getMessagesBefore, publishMessage} = require('../domain/message');
 
 router.use(requireAuth);
@@ -27,9 +27,10 @@ router.get('/before', async function (req, res) {
     res.send(newMessages);
 });
 
-router.use('/send', limitGuestMessages);
 router.post('/send', async function (req, res) {
-    await publishMessage(getUserName(req), req.body.text);
+    const username = await getUserName(req);
+    const channelName = await getGuestChannelTitle(username);
+    await publishMessage(getUserName(req), req.body.text, channelName);
     res.send('Ok');
 });
 

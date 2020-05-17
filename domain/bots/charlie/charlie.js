@@ -1,10 +1,10 @@
-const {EVENTS, subscribe} = require('../emitter');
-const {createChannel, joinChannel} = require('./channel');
+const {EVENTS, subscribe} = require('../../../emitter');
+const {createChannel, joinChannel} = require('../../channel');
 const questionsList = require('./data/questions');
 const phrasesList = require('./data/phrases');
-const {messages} = require('../database');
+const {publishMessage} = require('../../message');
 
-const FAQ_BOT_NAME = 'charlie';
+const CHARLIE_BOT_NAME = 'charlie';
 
 const S = 1000;
 
@@ -27,12 +27,7 @@ const USER_STATUS = {
 };
 
 async function sendMessage(text, channelName){
-    await messages().insert({
-        author: FAQ_BOT_NAME,
-        text,
-        channel: channelName,
-        date: Date.now(),
-    });
+    await publishMessage(CHARLIE_BOT_NAME, text, channelName);
     return true;
 }
 
@@ -46,6 +41,7 @@ subscribe(EVENTS.NEW_USER, async ({username}) => {
     const channelName = `${formatName(username)} and Charlie bot`;
     await createChannel(channelName);
     await joinChannel(username, channelName);
+    await joinChannel(CHARLIE_BOT_NAME, channelName);
     await sendMessage(`Hello ${formatName(username)}!`, channelName);
     await sendMessage(`Feel free to use this demo version of chat.`, channelName);
     await sendMessage(`You have 50 messages limit.`, channelName);
@@ -85,7 +81,10 @@ setInterval(async function(){
     }
 }, 5 * 1000);
 
-subscribe(EVENTS.NEW_MESSAGE, async ({author, channelName}) => {
+subscribe(EVENTS.NEW_MESSAGE, async ({author}) => {
+    if(author === CHARLIE_BOT_NAME) {
+        return;
+    }
     const userInfo = onlineUsers.get(author);
     userInfo.lastActivity = Date.now();
     userInfo.status = USER_STATUS.JUST_ANSWERED;
@@ -104,5 +103,5 @@ subscribe(EVENTS.USER_LOG_OUT, async ({username}) => {
 });
 
 module.exports = {
-    FAQ_BOT_NAME
+    CHARLIE_BOT_NAME
 };

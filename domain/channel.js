@@ -27,7 +27,7 @@ async function joinChannel(username, channelName) {
     return true;
 }
 
-async function getChannelTitle(username){
+async function getGuestChannelTitle(username){
     const channel =  await channels()
         .findOne({members: username});
     return channel.title;
@@ -36,5 +36,5 @@ async function getChannelTitle(username){
 module.exports = {
     createChannel,
     joinChannel,
-    getChannelTitle
+    getGuestChannelTitle
 };

@@ -1,7 +1,7 @@
 const {users, Permissions} = require('../database');
 const CryptoJS = require('crypto-js');
 const {dispatch, EVENTS} = require('../emitter');
-const {FAQ_BOT_NAME} = require('./faq-bot');
+const botList = require('./bots/bots-list');
 
 function encrypt(password) {
     return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64);
@@ -14,7 +14,7 @@ async function verifyUser(username, password){
 }
 
 async function userExists(username){
-    if(username === FAQ_BOT_NAME){
+    if(botList.includes(botList)){
         return true;
     }
     const usersCount = await users()
