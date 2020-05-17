@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './message-form.css';
+import {Controls} from "../../../design-system/controls/controls";
 
 export class MessageForm extends Component {
 
@@ -38,11 +38,11 @@ export class MessageForm extends Component {
 
     render(){
         return (
-            <form className="messageForm" onSubmit={this.sendMessage}>
-                <textarea className="messageInput" onChange={this.updateMessage} value={this.state.message}
+            <Controls onSubmit={this.sendMessage}>
+                <Controls.TextEdit onChange={this.updateMessage} value={this.state.message}
                 maxLength='450'/>
-                <input className="sendButton" type="submit" value=""/>
-            </form>
+                <Controls.Submit type="submit" value=""/>
+            </Controls>
         );
     }
 

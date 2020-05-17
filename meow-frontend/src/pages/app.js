@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import './App.css';
 import {Chat} from './chat/chat';
 import {AuthForm} from './auth-form/auth-form';
 import {RegistrationForm} from './registration-form/registration-form';
+import {Layout} from '../design-system/layout/layout';
 
 class App extends Component {
 
@@ -40,7 +40,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className="layout">
+            <Layout padded={!this.state.isAuthorised}>
                 {
                     this.state.isAuthorised
                         ? <Chat logout={this.logout}/>
@@ -50,7 +50,7 @@ class App extends Component {
                             : <RegistrationForm switchForm={this.toggleSingForm} login={this.login}/>
                         )
                 }
-            </div>
+            </Layout>
 
         );
     }

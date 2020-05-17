@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import './auth-form.css';
+import {Form} from "../../design-system/form/form";
+import {Logo} from '../../design-system/logo/logo';
+import {Button} from '../../design-system/button/button';
+import {Text} from '../../design-system/text/text';
+import {Layout} from '../../design-system/layout/layout';
 
 export class AuthForm extends Component {
 
@@ -31,28 +35,22 @@ export class AuthForm extends Component {
 
     render() {
         return (
-            <form className='form' onSubmit={this.login}>
-
-                <div className='logo'/>
-                <input className='input' type='text'
-                       placeholder='Username' onChange={this.updateUsername} value={this.state.username}/>
+            <Form onSubmit={this.login}>
+                <Logo icon={Logo.ICON.Login}/>
+                <Form.Input placeholder='Username' onChange={this.updateUsername} value={this.state.username}/>
                 {
                     !!this.state.authError && (
-                        <div className='error-container'>
-                            <span className='error'>username is taken</span>
-                        </div>
+                        <Form.Error>username is taken</Form.Error>
                     )
                 }
-                <input className='password' type='password' name='password'  placeholder='Password'
+                <Form.Input type='password' name='password'  placeholder='Password'
                        onChange={this.updatePassword} value={this.state.password}/>
-                <input className='submit' type='submit' value='LOGIN'/>
-
-                <div className='sign-form'>
-                <span className='not-account'>Don't have an account? </span>
-                <span className='sign' onClick={this.props.switchForm}>Sign up</span>
-                <span className='footer'></span>
-                </div>
-            </form>
+                <Button onClick={this.login}>LOGIN</Button>
+                <Layout.Wrapper>
+                    <Text.Disclaimer>Don't have an account?</Text.Disclaimer>
+                    <Text.Link onClick={this.props.switchForm}>Sign up</Text.Link>
+                </Layout.Wrapper>
+            </Form>
         );
     }
 }

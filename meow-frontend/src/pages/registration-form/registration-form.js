@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import './registration-form.css';
+import {Form} from '../../design-system/form/form';
+import {Logo} from '../../design-system/logo/logo';
+import {Button} from '../../design-system/button/button';
+import {Text} from '../../design-system/text/text';
+import {Layout} from '../../design-system/layout/layout';
 
 function mask(password){
     return new Array(password.length)
@@ -81,47 +85,34 @@ export class RegistrationForm extends Component {
 
     render() {
         return (
-
-
-            <form className='register-form'>
-            <div className='container-registration'>
-                <h2 className='title'>  </h2>
-                <div className='logo-registration'/>
-            </div>
-                <input className='register-input' type='text'
+            <Form>
+                <Logo icon={Logo.ICON.Register}/>
+                <Form.Input
                        placeholder="Enter Username"
-                       autoComplete="chrome-off"
                        value={this.state.username}
                        onChange={this.updateUsername}
                        name='comment'
                        />
-                <input className='register-password'
+                <Form.Input
                        placeholder="Enter Password"
                        value={mask(this.state.password)}
                        name='credit-card'
                        onChange={this.updatePassword}/>
-                <input className='repeat-password'
+                <Form.Input
                        placeholder='Confirm Password'
                        value={mask(this.state.repeatPassword)}
                        onChange={this.updateRepeatPassword}/>
                 {
                     !!this.state.error && (
-                        <div className='error-container'>
-                            <span className='error'>{this.state.error}</span>
-                        </div>
+                        <Form.Error>{this.state.error}</Form.Error>
                     )
                 }
-
-                <div className='get-start' onClick={this.register}>
-                    <span>Get started</span>
-                </div>
-
-                <div className='have-account'>
-                    <span className='already-have'>Already have an accout?</span>
-                    <span className='log-in' onClick={this.props.switchForm}> Log in</span>
-                </div>
-
-            </form>
+                <Button onClick={this.register}>Get started</Button>
+                <Layout.Wrapper>
+                    <Text.Disclaimer>Already have an accout?</Text.Disclaimer>
+                    <Text.Link onClick={this.props.switchForm}> Log in</Text.Link>
+                </Layout.Wrapper>
+            </Form>
         );
     }
 }

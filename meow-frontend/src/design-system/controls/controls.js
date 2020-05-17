@@ -1,5 +1,7 @@
+import styled from "styled-components";
 
-.messageForm {
+
+export const Controls = styled.form`
     margin-top: auto;
     height: 80px;
     background-color: #bbbfca;
@@ -7,18 +9,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
+`;
 
-.messageInput{
+Controls.TextEdit = styled.textarea`
     height: 60px;
     width: 500px;
     border-radius: 7px;
     resize: none;
     border-color: rgb(216, 216, 216);
     background-color: #fdfdff;
-}
+`;
 
-.sendButton{
+Controls.Submit = styled.input`
     height: 40px;
     width: 40px;
     padding: 10px;
@@ -29,4 +31,4 @@
     filter: invert(85%);
     background-color: transparent;
     cursor: pointer;
-}
+`;

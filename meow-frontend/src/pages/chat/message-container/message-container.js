@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './message-container.css';
+import {Message} from "../../../design-system/message/message";
 
 export class MessageContainer extends Component {
 
@@ -27,16 +27,15 @@ export class MessageContainer extends Component {
     render(){
         const me = localStorage.getItem('username');
         return (
-            <div ref={this.containerRef} className="messagesContainer" onWheel={this.getOldMessages}>
+            <Message.Container ref={this.containerRef}  onWheel={this.getOldMessages}>
                 {this.props.messages.map((message, i) => (
-                    <div key={i} className={me === message.author ? 'right' : ''}>
-                        <div className='message-group'>
-                            <span className='author'>{message.author}</span>
-                            <p className='message'>{message.text}</p>
-                        </div>
-                    </div>
+                    <Message.Item key={i}
+                     align={me === message.author ? Message.POSITION.Right : Message.POSITION.Left}
+                    author={message.author}>
+                        {message.text}
+                    </Message.Item>
                 ))}
-            </div>
+            </Message.Container>
         )
     }
 }

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import './chat.css';
 import {MessageContainer} from './message-container/message-container';
 import {MessageForm} from './message-form/message-form';
 import {ChatHeader} from './chat-header/chat-header';
+import {Panel} from "../../design-system/panel/panel";
+import {Layout} from "../../design-system/layout/layout";
 
 export class Chat extends Component {
 
@@ -92,16 +93,16 @@ export class Chat extends Component {
 
     render() {
         return (
-            <div className="container">
+            <Panel height='100vh' width='900px'>
                 <ChatHeader logout={this.props.logout}/>
-                <div className="main">
-                    <div className="addInfo"/>
-                    <div className="chat">
+                <Layout.Row>
+                    <Panel.Block scheme={Panel.Scheme.Light} width='500px' height='calc(100vh - 60px)'/>
+                    <Layout.Column width='100%'>
                         <MessageContainer messages={this.state.messages} getOldMessages={this.getOldMessages}/>
                         <MessageForm sendMessage={this.sendMessage}/>
-                    </div>
-                </div>
-            </div>
+                    </Layout.Column>
+                </Layout.Row>
+            </Panel>
         );
     }
 }
