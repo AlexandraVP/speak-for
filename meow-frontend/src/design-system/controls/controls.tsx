@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const Controls = styled.form`
+const Root = styled.form`
     margin-top: auto;
     height: 80px;
     background-color: #bbbfca;
@@ -11,7 +11,7 @@ export const Controls = styled.form`
     justify-content: space-between;
 `;
 
-Controls.TextEdit = styled.textarea`
+const TextEdit = styled.textarea`
     height: 60px;
     width: 500px;
     border-radius: 7px;
@@ -20,7 +20,7 @@ Controls.TextEdit = styled.textarea`
     background-color: #fdfdff;
 `;
 
-Controls.Submit = styled.input`
+const Submit = styled.input`
     height: 40px;
     width: 40px;
     padding: 10px;
@@ -32,3 +32,9 @@ Controls.Submit = styled.input`
     background-color: transparent;
     cursor: pointer;
 `;
+
+export const Controls = {
+    Root,
+    TextEdit,
+    Submit
+};

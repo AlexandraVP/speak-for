@@ -4,14 +4,21 @@ import {AuthForm} from './auth-form/auth-form';
 import {RegistrationForm} from './registration-form/registration-form';
 import {Layout} from '../design-system/layout/layout';
 
-class App extends Component {
+interface AppState {
+    isAuthorised: boolean;
+    needRegistration: boolean;
+    authError: boolean;
+}
+
+class App extends Component<{},AppState> {
 
     state = {
         isAuthorised: !!localStorage.getItem('x-auth-token'),
         needRegistration: false,
+        authError: false
     };
 
-    login = async (username, password) => {
+    login = async (username: string, password: string) => {
         const response = await fetch('/users/login', {
             method: 'POST',
             headers: {
@@ -40,7 +47,7 @@ class App extends Component {
 
     render() {
         return (
-            <Layout padded={!this.state.isAuthorised}>
+            <Layout.Page padded={!this.state.isAuthorised}>
                 {
                     this.state.isAuthorised
                         ? <Chat logout={this.logout}/>
@@ -50,7 +57,7 @@ class App extends Component {
                             : <RegistrationForm switchForm={this.toggleSingForm} login={this.login}/>
                         )
                 }
-            </Layout>
+            </Layout.Page>
 
         );
     }

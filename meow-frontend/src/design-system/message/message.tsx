@@ -13,16 +13,20 @@ const Container = styled.div`
     }
 `;
 
-const POSITION = {
-    Left: 'Left',
-    Right: 'Right',
-};
+enum Position {
+    Left= 'Left',
+    Right= 'Right',
+}
 
-const MessageGroup = styled.div`
+interface MessageGroupProps {
+    align: Position;
+}
+
+const MessageGroup = styled.div<MessageGroupProps>`
     display: flex;
     flex-direction: column;
     margin: 10px;
-    align-items: ${({align}) => align === POSITION.Right ? 'flex-end' : 'flex-start'};
+    align-items: ${({align}) => align === Position.Right ? 'flex-end' : 'flex-start'};
 `;
 
 const MessageAuthor = styled.span`
@@ -45,7 +49,12 @@ const MessageText = styled.p`
     margin: 0;
 `;
 
-const Item = ({author, align, children}) => (
+type ItemProps = {
+    author: string;
+    align: Position;
+} & React.DOMAttributes<HTMLDivElement>
+
+const Item = ({author, align, children}: ItemProps) => (
     <MessageGroup align={align}>
         <MessageAuthor>{author}</MessageAuthor>
         <MessageText>{children}</MessageText>
@@ -54,6 +63,6 @@ const Item = ({author, align, children}) => (
 
 export const Message = {
     Container,
-    POSITION,
+    Position,
     Item
 };

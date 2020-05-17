@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Layout = styled.div`
+interface PageProps {
+    padded: boolean;
+}
+
+const Page = styled.div<PageProps>`
   display: flex;
   justify-content: center;
   align-items: ${({padded}) => padded ? 'flex-start' : 'center'};
@@ -15,7 +19,14 @@ export const Layout = styled.div`
   )}  
 `;
 
-Layout.Row = styled.div`
+interface FlexProps {
+    align?: string;
+    justify?: string;
+    width?: string;
+    height?: string;
+}
+
+const Row = styled.div<FlexProps>`
     display: flex;
     flex-direction: row;
     ${({align}) => align ? `align-items: ${align};` : ''}
@@ -24,7 +35,7 @@ Layout.Row = styled.div`
     ${({height}) => height ? `height: ${height};` : ''}
 `;
 
-Layout.Column = styled.div`
+const Column = styled.div<FlexProps>`
     display: flex;
     flex-direction: column;
     ${({align}) => align ? `align-items: ${align};` : ''}
@@ -33,6 +44,13 @@ Layout.Column = styled.div`
     ${({height}) => height ? `height: ${height};` : ''}
 `;
 
-Layout.Wrapper = styled.div`
+const Wrapper = styled.div`
     padding: 10px;
 `;
+
+export const Layout = {
+    Page,
+    Row,
+    Column,
+    Wrapper
+};

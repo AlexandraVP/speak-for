@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TYPE = {
-    SOLID: 'SOLID',
-    BORDER: 'BORDER'
-};
+enum ButtonType {
+    SOLID='SOLID',
+    BORDER='BORDER'
+}
 
 const SolidButton = styled.div`
     cursor: pointer;
@@ -30,9 +30,12 @@ const BorderButton = styled.div`
     cursor: pointer;
 `;
 
+type ButtonProps = {
+    type: ButtonType;
+} & React.DOMAttributes<HTMLDivElement>;
 
-export const Button = ({type, ...rest}) => {
-    return type === TYPE.BORDER ? <BorderButton {...rest}/> : <SolidButton {...rest}/>;
+export const Button = ({type, ...rest}: ButtonProps)  => {
+    return type === ButtonType.BORDER ? <BorderButton {...rest}/> : <SolidButton {...rest}/>;
 };
 
-Button.TYPE = TYPE;
+Button.Type = ButtonType;

@@ -5,18 +5,30 @@ import {Button} from '../../design-system/button/button';
 import {Text} from '../../design-system/text/text';
 import {Layout} from '../../design-system/layout/layout';
 
-function mask(password){
+function mask(password: string){
     return new Array(password.length)
         .fill(0)
         .map(() => '*')
         .join('');
 }
 
-function concat(value, masked){
+function concat(value: string, masked: string){
     return value.slice(0, masked.length) + masked.slice(value.length)
 }
 
-export class RegistrationForm extends Component {
+interface RegistrationFormProps {
+    switchForm: () => any;
+    login: (username: string, password: string) => any;
+}
+
+interface RegistrationFormState {
+    username: string;
+    password: string;
+    repeatPassword: string;
+    error: string;
+}
+
+export class RegistrationForm extends Component<RegistrationFormProps, RegistrationFormState> {
 
     state = {
         username: '',
@@ -48,7 +60,7 @@ export class RegistrationForm extends Component {
                 body: JSON.stringify({username, password: this.state.password}),
             });
             if (response.status > 400) {
-                this.setState({error: response.status})
+                this.setState({error: response.status.toString()})
             } else {
                 const username = this.state.username
                     .toLowerCase()
@@ -59,7 +71,7 @@ export class RegistrationForm extends Component {
     };
 
 
-    updateUsername = (event) => {
+    updateUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
         const username = event.target.value;
         this.setState({
             username,
@@ -67,7 +79,7 @@ export class RegistrationForm extends Component {
         })
     };
 
-    updatePassword = (event) => {
+    updatePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         const password = event.target.value;
         this.setState({
             password: concat(this.state.password, password),
@@ -75,7 +87,7 @@ export class RegistrationForm extends Component {
         })
     };
 
-    updateRepeatPassword = (event) => {
+    updateRepeatPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         const repeatPassword = event.target.value;
         this.setState({
             repeatPassword: concat(this.state.repeatPassword, repeatPassword),
@@ -85,8 +97,8 @@ export class RegistrationForm extends Component {
 
     render() {
         return (
-            <Form>
-                <Logo icon={Logo.ICON.Register}/>
+            <Form.Container>
+                <Logo.Img icon={Logo.Icon.Register} size={Logo.Size.L}/>
                 <Form.Input
                        placeholder="Enter Username"
                        value={this.state.username}
@@ -107,12 +119,12 @@ export class RegistrationForm extends Component {
                         <Form.Error>{this.state.error}</Form.Error>
                     )
                 }
-                <Button onClick={this.register}>Get started</Button>
+                <Button onClick={this.register} type={Button.Type.SOLID}>Get started</Button>
                 <Layout.Wrapper>
-                    <Text.Disclaimer>Already have an accout?</Text.Disclaimer>
+                    <Text.Disclaimer>Already have an account?</Text.Disclaimer>
                     <Text.Link onClick={this.props.switchForm}> Log in</Text.Link>
                 </Layout.Wrapper>
-            </Form>
+            </Form.Container>
         );
     }
 }

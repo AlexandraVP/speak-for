@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
 import {Controls} from "../../../design-system/controls/controls";
 
-export class MessageForm extends Component {
+interface MessageFormProps {
+    sendMessage: (text: string) => any;
+}
+
+interface MessageFormState {
+    message: string;
+}
+
+export class MessageForm extends Component<MessageFormProps, MessageFormState> {
 
     state = {
         message: ''
     };
 
-    sendMessage = (event) => {
-        if(event.nativeEvent){
-            event.nativeEvent.preventDefault();
+    sendMessage = (event: React.SyntheticEvent | Event) => {
+        if((event as React.SyntheticEvent).nativeEvent){
+            (event as React.SyntheticEvent).nativeEvent.preventDefault();
         }
         if(this.state.message.trim().length === 0){
             return;
@@ -18,11 +26,11 @@ export class MessageForm extends Component {
         this.setState({message: ''});
     };
 
-    updateMessage = (event) => {
+    updateMessage = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         this.setState({message: event.target.value});
     };
 
-    keyUpHandler = (event) => {
+    keyUpHandler = (event: KeyboardEvent) => {
         if (event.keyCode === 13 && event.shiftKey){
             this.sendMessage(event);
         }
@@ -38,11 +46,11 @@ export class MessageForm extends Component {
 
     render(){
         return (
-            <Controls onSubmit={this.sendMessage}>
+            <Controls.Root onSubmit={this.sendMessage}>
                 <Controls.TextEdit onChange={this.updateMessage} value={this.state.message}
-                maxLength='450'/>
+                maxLength={450}/>
                 <Controls.Submit type="submit" value=""/>
-            </Controls>
+            </Controls.Root>
         );
     }
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
-export const Form = styled.form`
+const Container = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +13,7 @@ export const Form = styled.form`
     box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
 `;
 
-Form.Input = styled.input`
+const Input = styled.input`
     font-size: 17px;
     border-width: 0 0 2px 0;
     padding-bottom: 5px;
@@ -31,8 +30,14 @@ const ErrorMessage = styled.span`
     color: #ff9494;
 `;
 
-Form.Error = ({children}) => (
+const Error = ({children}:React.DOMAttributes<HTMLDivElement>) => (
     <ErrorContainer>
         <ErrorMessage>{children}</ErrorMessage>
     </ErrorContainer>
 );
+
+export const Form = {
+    Container,
+    Input,
+    Error
+};
